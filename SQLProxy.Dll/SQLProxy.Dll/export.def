@@ -1,0 +1,10 @@
+LIBRARY	"SQLProxy"
+EXPORTS
+	SetLogLevel		@1
+	DBTest			@2
+	SetParameters	@3
+	GetDBStatus		@4
+	StartProxy		@5
+	StopProxy		@6
+	ProxyCall		@7
+	

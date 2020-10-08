@@ -1,0 +1,39 @@
+
+SQLProxy.sln - VS2008工程文件
+
+[SQLProxy.Net]
+    语言 - vb.net
+    依赖 - .Net Framework2.0
+    描述 - SQLProxy UI界面程序
+           数据库集群配置, 日志输出;
+
+[SQLProxy.Dll]
+    语言 - c/c++
+    描述 - SQLProxy 核心DLL
+           socket通讯，TDS协议分析，集群负载均衡处理
+    主要类说明:
+      SOCKET通讯相关封装类
+           SocketStream.h/SocketStream.cpp  - 数据接收发送(写/读)缓冲对象封装
+           socket.h/socket.cpp - CSocket 数据接收发送类; 
+           ServerSocket.h/ServerSocket.cpp  - SOCKET侦听服务类
+           SocketListener.h - SOCKET关闭/接收到数据/有连接进来 事件通知接口类
+
+      核心类
+           ProxyServer.h/.cpp
+		- CProxyServer SQL代理服务类 继承自ISocketListener
+           	处理SQL客户端的连接请求/关闭以及进行TDS协议解析处理SQL客户端登录
+                根据当前集群模式以及配置的集群数据库代理连接某一数据库
+                - CSQLClient  SQL代理客户端处理类 继承自ISocketListener
+                接收SQL客户端发送的socket数据，TDS协议分析，然后代理转发到连接的主服务器
+                如果是写语句则解析连接的服务器的返回结果如果成功则转发到所有集群服务器执行
+                任意服务器执行失败则全部回滚并将错误信息发挥SQL客户端
+                如果是读(查询)则直接返回当前连接数据库的执行结果
+           dbclient.h/dbclient.cpp
+		- DBConn  SQL数据库连接类 继承自ISocketListener
+                连接配置的集群数据库，发送SQL语句获取数据库返回结果
+
+    
+          
+
+
+    
