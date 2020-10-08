@@ -33,7 +33,16 @@ SQLProxy.sln - VS2008工程文件
                 连接配置的集群数据库，发送SQL语句获取数据库返回结果
 
     
-          
+          其它
+            mytds.h/mytds.cpp
+            mytdsproto.h/mytdsproto.cpp
+                 TDS协议版本/常量定义; 协议头解析/封包;  TDS登录包解析等TDS协议相关函数
+            SQLPacket.h/SQLPacket.cpp
+                  TDS 完整SQL语句Packet 分析打印类
+            CDBServer.h/CDBServer.cpp
+                  SQL集群服务器信息
+            SQLAnalyse.h/SQLAnalyse.cpp
+                  启动异步SQL语句打印线程, 获取SQL语句队列的TDS数据包，解析TDS打印SQL语句和执行结果; 
 
 
     
